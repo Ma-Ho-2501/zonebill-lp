@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zonebill - Your real hourly rate, calculated automatically</title>
+<meta name="description" content="An app for independent tradespeople that automatically detects when you leave a job site and calculates your real hourly rate. Get notified at launch.">
+<style>
+  :root{
+    --bg:#F7F8F4;
+    --card:#FFFFFF;
+    --text:#2B3324;
+    --muted:#6B7565;
+    --sage:#7C9473;
+    --sage-dark:#5E7355;
+    --border:#DFE4D8;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    line-height:1.75;
+  }
+  .wrap{
+    max-width:560px;
+    margin:0 auto;
+    padding:0 20px;
+  }
+  header.hero{
+    background:linear-gradient(180deg, #EEF2E8 0%, var(--bg) 100%);
+    padding:56px 0 40px;
+    text-align:center;
+  }
+  .logo{
+    font-weight:700;
+    font-size:1.1rem;
+    color:var(--sage-dark);
+    letter-spacing:0.04em;
+    margin-bottom:28px;
+  }
+  .logo span{
+    display:inline-block;
+    width:8px;
+    height:8px;
+    background:var(--sage);
+    border-radius:50%;
+    margin-right:8px;
+    vertical-align:middle;
+  }
+  h1{
+    font-size:1.7rem;
+    line-height:1.5;
+    margin:0 0 16px;
+    color:var(--text);
+  }
+  h1 .accent{ color:var(--sage-dark); }
+  .sub{
+    color:var(--muted);
+    font-size:1rem;
+    margin:0 0 32px;
+  }
+  section{
+    padding:40px 0;
+    border-top:1px solid var(--border);
+  }
+  h2{
+    font-size:1.05rem;
+    color:var(--sage-dark);
+    margin:0 0 20px;
+  }
+  .pain-item, .benefit-item{
+    display:flex;
+    gap:14px;
+    margin-bottom:20px;
+    align-items:flex-start;
+  }
+  .pain-item .icon, .benefit-item .icon{
+    font-size:1.4rem;
+    line-height:1.4;
+    flex-shrink:0;
+  }
+  .pain-item p, .benefit-item p{
+    margin:0;
+    font-size:0.95rem;
+    color:var(--text);
+  }
+  .pain-item .label, .benefit-item .label{
+    font-weight:600;
+    display:block;
+    margin-bottom:2px;
+  }
+  .cta-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:32px 24px;
+    text-align:center;
+    box-shadow:0 2px 12px rgba(43,51,36,0.05);
+  }
+  .cta-card h2{
+    color:var(--text);
+    font-size:1.2rem;
+  }
+  .cta-card p{
+    color:var(--muted);
+    font-size:0.9rem;
+    margin-bottom:24px;
+  }
+  form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  input[type="email"]{
+    padding:14px 16px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    font-size:1rem;
+    font-family:inherit;
+    width:100%;
+  }
+  input[type="email"]:focus{
+    outline:2px solid var(--sage);
+    outline-offset:1px;
+  }
+  button{
+    padding:14px 16px;
+    border-radius:10px;
+    border:none;
+    background:var(--sage-dark);
+    color:#fff;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  button:hover{ background:var(--sage); }
+  .privacy-note{
+    font-size:0.78rem;
+    color:var(--muted);
+    margin-top:16px;
+  }
+  .thanks{
+    display:none;
+    padding:20px;
+    background:#EEF2E8;
+    border-radius:10px;
+    color:var(--sage-dark);
+    font-weight:600;
+  }
+  footer{
+    text-align:center;
+    padding:32px 0 48px;
+    color:var(--muted);
+    font-size:0.78rem;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="logo"><span></span>Zonebill</div>
+    <h1 data-i18n="hero_headline">Stop manually punching in<br>and out at <span class="accent">every job site</span>.</h1>
+    <p class="sub" data-i18n="hero_sub">Zonebill automatically detects when you arrive at and leave a job site. No app to open, no button to press, no timer to remember.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="pain">
+    <h2 data-i18n="pain_heading">Sound familiar?</h2>
+    <div class="pain-item">
+      <span class="icon">😵</span>
+      <p><span class="label" data-i18n="pain1_label">You don't know your real hourly rate</span>
+      <span data-i18n="pain1_body">Once you factor in drive time between jobs, you have no clear idea what you're actually earning per hour.</span></p>
+    </div>
+    <div class="pain-item">
+      <span class="icon">✍️</span>
+      <p><span class="label" data-i18n="pain2_label">Manual time tracking is a hassle</span>
+      <span data-i18n="pain2_body">Opening an app to punch in and out at every single job site is easy to forget and annoying to do.</span></p>
+    </div>
+  </section>
+
+  <section id="benefit">
+    <h2 data-i18n="benefit_heading">What Zonebill does</h2>
+    <div class="benefit-item">
+      <span class="icon">📍</span>
+      <p><span class="label" data-i18n="benefit1_label">Mostly automatic, with manual backup when you need it</span>
+      <span data-i18n="benefit1_body">Most job sites are tracked automatically. In spots where automatic detection is unreliable, like areas with poor signal, you can just correct it manually.</span></p>
+    </div>
+    <div class="benefit-item">
+      <span class="icon">🔒</span>
+      <p><span class="label" data-i18n="benefit2_label">Built to never share your personal data</span>
+      <span data-i18n="benefit2_body">Your records stay on your device. We never hand your name or contact details to any third party.</span></p>
+    </div>
+    <div class="benefit-item">
+      <span class="icon">💪</span>
+      <p><span class="label" data-i18n="benefit3_label">Built for you, not your employer</span>
+      <span data-i18n="benefit3_body">Unlike the enterprise workforce-management apps built for companies to track employees, Zonebill is designed for independent operators to track their own numbers.</span></p>
+    </div>
+  </section>
+
+  <section id="cta">
+    <div class="cta-card">
+      <h2 data-i18n="cta_heading">Get notified at launch</h2>
+      <p data-i18n="cta_sub">Be the first to know when we launch. Takes 5 seconds to sign up.</p>
+
+      <form id="signup-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="email" name="email" placeholder="you@example.com" data-i18n-placeholder="cta_placeholder" required>
+        <input type="hidden" name="locale" value="en">
+        <input type="hidden" name="source" id="source-field" value="">
+        <input type="text" name="_gotcha" style="display:none">
+        <button type="submit" data-i18n="cta_button">Notify Me</button>
+      </form>
+      <div class="thanks" id="thanks-message" data-i18n="cta_thanks">Thanks for signing up! We'll email you the moment we launch.</div>
+
+      <p class="privacy-note" data-i18n="privacy_note">We'll only use your email to notify you about our launch. Nothing else.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span data-i18n="footer_text">© 2026 Zonebill. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+  // Reflect the referral parameter (?src=community_name) into the hidden form field
+  (function(){
+    var params = new URLSearchParams(window.location.search);
+    var src = params.get('src') || params.get('utm_source') || 'direct';
+    var field = document.getElementById('source-field');
+    if (field) field.value = src;
+  })();
+
+  // Submit to Formspree via fetch so we can show a thank-you message without navigating away
+  var form = document.getElementById('signup-form');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('thanks-message').style.display = 'block';
+        } else {
+          alert('Something went wrong. Please try again in a moment.');
+        }
+      }).catch(function () {
+        alert('Something went wrong. Please try again in a moment.');
+      });
+    });
+  }
+</script>
+
+<!-- Google Analytics (enable once you have a measurement ID) -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+-->
+
+</body>
+</html>

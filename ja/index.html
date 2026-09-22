@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zonebill - 現場を出た瞬間、時給が自動で見える</title>
+<meta name="description" content="現場の出入りを自動検知して、移動時間込みの実質時給を自動計算する個人事業主向けアプリ。リリース時にお知らせします。">
+<style>
+  :root{
+    --bg:#F7F8F4;
+    --card:#FFFFFF;
+    --text:#2B3324;
+    --muted:#6B7565;
+    --sage:#7C9473;
+    --sage-dark:#5E7355;
+    --border:#DFE4D8;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
+    line-height:1.75;
+  }
+  .wrap{
+    max-width:560px;
+    margin:0 auto;
+    padding:0 20px;
+  }
+  header.hero{
+    background:linear-gradient(180deg, #EEF2E8 0%, var(--bg) 100%);
+    padding:56px 0 40px;
+    text-align:center;
+  }
+  .logo{
+    font-weight:700;
+    font-size:1.1rem;
+    color:var(--sage-dark);
+    letter-spacing:0.04em;
+    margin-bottom:28px;
+  }
+  .logo span{
+    display:inline-block;
+    width:8px;
+    height:8px;
+    background:var(--sage);
+    border-radius:50%;
+    margin-right:8px;
+    vertical-align:middle;
+  }
+  h1{
+    font-size:1.7rem;
+    line-height:1.5;
+    margin:0 0 16px;
+    color:var(--text);
+  }
+  h1 .accent{ color:var(--sage-dark); }
+  .sub{
+    color:var(--muted);
+    font-size:1rem;
+    margin:0 0 32px;
+  }
+  section{
+    padding:40px 0;
+    border-top:1px solid var(--border);
+  }
+  h2{
+    font-size:1.05rem;
+    color:var(--sage-dark);
+    margin:0 0 20px;
+  }
+  .pain-item, .benefit-item{
+    display:flex;
+    gap:14px;
+    margin-bottom:20px;
+    align-items:flex-start;
+  }
+  .pain-item .icon, .benefit-item .icon{
+    font-size:1.4rem;
+    line-height:1.4;
+    flex-shrink:0;
+  }
+  .pain-item p, .benefit-item p{
+    margin:0;
+    font-size:0.95rem;
+    color:var(--text);
+  }
+  .pain-item .label, .benefit-item .label{
+    font-weight:600;
+    display:block;
+    margin-bottom:2px;
+  }
+  .cta-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:32px 24px;
+    text-align:center;
+    box-shadow:0 2px 12px rgba(43,51,36,0.05);
+  }
+  .cta-card h2{
+    color:var(--text);
+    font-size:1.2rem;
+  }
+  .cta-card p{
+    color:var(--muted);
+    font-size:0.9rem;
+    margin-bottom:24px;
+  }
+  form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  input[type="email"]{
+    padding:14px 16px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    font-size:1rem;
+    font-family:inherit;
+    width:100%;
+  }
+  input[type="email"]:focus{
+    outline:2px solid var(--sage);
+    outline-offset:1px;
+  }
+  button{
+    padding:14px 16px;
+    border-radius:10px;
+    border:none;
+    background:var(--sage-dark);
+    color:#fff;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  button:hover{ background:var(--sage); }
+  .privacy-note{
+    font-size:0.78rem;
+    color:var(--muted);
+    margin-top:16px;
+  }
+  .thanks{
+    display:none;
+    padding:20px;
+    background:#EEF2E8;
+    border-radius:10px;
+    color:var(--sage-dark);
+    font-weight:600;
+  }
+  footer{
+    text-align:center;
+    padding:32px 0 48px;
+    color:var(--muted);
+    font-size:0.78rem;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="logo"><span></span>Zonebill</div>
+    <h1 data-i18n="hero_headline">現場を出るたびの<br><span class="accent">手入力</span>、もうやめませんか？</h1>
+    <p class="sub" data-i18n="hero_sub">現場の出入りをアプリが自動で検知。開く・押す・入力する手間ゼロで、その場の作業時間が記録されます。</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="pain">
+    <h2 data-i18n="pain_heading">こんな悩み、ありませんか？</h2>
+    <div class="pain-item">
+      <span class="icon">😵</span>
+      <p><span class="label" data-i18n="pain1_label">実質時給が見えない</span>
+      <span data-i18n="pain1_body">移動時間を含めると、本当の時給がいくらなのか把握できていない。</span></p>
+    </div>
+    <div class="pain-item">
+      <span class="icon">✍️</span>
+      <p><span class="label" data-i18n="pain2_label">手動での打刻が面倒</span>
+      <span data-i18n="pain2_body">現場ごとにアプリを開いて開始・終了を押すのを忘れたり、面倒に感じる。</span></p>
+    </div>
+  </section>
+
+  <section id="benefit">
+    <h2 data-i18n="benefit_heading">Zonebillができること</h2>
+    <div class="benefit-item">
+      <span class="icon">📍</span>
+      <p><span class="label" data-i18n="benefit1_label">自動検知＋必要な時だけ手動補正</span>
+      <span data-i18n="benefit1_body">ほとんどの現場は自動で記録。電波が届かない場所など、自動検知が難しい場合だけ手動で補正できます。</span></p>
+    </div>
+    <div class="benefit-item">
+      <span class="icon">🔒</span>
+      <p><span class="label" data-i18n="benefit2_label">個人情報を渡さない設計</span>
+      <span data-i18n="benefit2_body">記録は端末内で完結。氏名や連絡先などの個人情報を第三者に提供することはありません。</span></p>
+    </div>
+    <div class="benefit-item">
+      <span class="icon">💪</span>
+      <p><span class="label" data-i18n="benefit3_label">大手の管理アプリに縛られない</span>
+      <span data-i18n="benefit3_body">企業の従業員管理を前提にした大手アプリとは違い、個人事業主自身が自分のために使えるシンプルな設計です。</span></p>
+    </div>
+  </section>
+
+  <section id="cta">
+    <div class="cta-card">
+      <h2 data-i18n="cta_heading">リリース時にお知らせします</h2>
+      <p data-i18n="cta_sub">リリース時に一番最初にお知らせします。登録は数秒で完了します。</p>
+
+      <form id="signup-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="email" name="email" placeholder="you@example.com" data-i18n-placeholder="cta_placeholder" required>
+        <input type="hidden" name="locale" value="ja">
+        <input type="hidden" name="source" id="source-field" value="">
+        <input type="text" name="_gotcha" style="display:none">
+        <button type="submit" data-i18n="cta_button">通知を受け取る</button>
+      </form>
+      <div class="thanks" id="thanks-message" data-i18n="cta_thanks">登録ありがとうございます！リリース時にメールでお知らせします。</div>
+
+      <p class="privacy-note" data-i18n="privacy_note">登録いただいたメールアドレスはリリースのご案内以外には使用しません。</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span data-i18n="footer_text">© 2026 Zonebill（仮称）. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+  // 流入元パラメータ（?src=community_name）をフォームの隠しフィールドへ反映
+  (function(){
+    var params = new URLSearchParams(window.location.search);
+    var src = params.get('src') || params.get('utm_source') || 'direct';
+    var field = document.getElementById('source-field');
+    if (field) field.value = src;
+  })();
+
+  // Formspreeへ非同期送信し、ページ遷移せずお礼メッセージを表示する
+  var form = document.getElementById('signup-form');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('thanks-message').style.display = 'block';
+        } else {
+          alert('送信に失敗しました。時間をおいて再度お試しください。');
+        }
+      }).catch(function () {
+        alert('送信に失敗しました。時間をおいて再度お試しください。');
+      });
+    });
+  }
+</script>
+
+<!-- Google Analytics（測定IDを設定後に有効化） -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+-->
+
+</body>
+</html>
